@@ -1,5 +1,7 @@
 # Huge Navigation Exercise
 
+[![Code Climate](https://codeclimate.com/github/william-index/NavExercise/badges/gpa.svg)](https://codeclimate.com/github/william-index/NavExercise)
+
 ## Overview
 
 This exercise will have the candidate build a responsive site navigation driven by an AJAX request.
