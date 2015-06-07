@@ -45,6 +45,14 @@ module.exports = function(grunt){
       }
     },
 
+    uglify: {
+      build: {
+        files: {
+          'public/scripts/all.js': ['public/scripts/all.js']
+        }
+      }
+    },
+
     watch: {
       css: {
         files: ['public/styles/**/*.sass'],
@@ -52,15 +60,7 @@ module.exports = function(grunt){
       },
       js: {
         files: ['public/scripts/classes/*.js', 'public/scripts/scripts.js'],
-        tasks: ['buildScripts']
-      }
-    },
-
-    uglify: {
-      build: {
-        files: {
-          'public/scripts/all.js': ['public/scripts/all.js']
-        }
+        tasks: ['buildScripts', 'uglify']
       }
     }
   });

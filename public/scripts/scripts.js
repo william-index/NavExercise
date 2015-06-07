@@ -11,6 +11,7 @@ var buildMenu = new MenuBuilder('/api/nav.json', '.main_menu');
 // Toggle open and close for thin menu
 $qs('.main_header__burger').addEventListener('click', function(e){
   e.preventDefault();
+  $qs('.site_footer').classList.toggle('open');
   mainMenu.toggle_open();
 });
 $qs('.main_menu__blocker--small').addEventListener('click', function(e){
