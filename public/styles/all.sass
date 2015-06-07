@@ -11,6 +11,9 @@
 
 // Custom Resets
 // -------------------
+body
+  padding-top: $mobile_header_height
+
 a, button
   outline: 0px !important
 
@@ -27,6 +30,9 @@ a, button
   &.open .page_content
     -webkit-transform: translateX(228px)
 
+  &.open .cover_image
+    -webkit-transform: translateX(228px)
+
 .page_content
   -webkit-transition: transform 0.5s
   -webkit-transform: translateX(0px)
@@ -34,8 +40,26 @@ a, button
 .page_content__header
 
 .page_content__content
+  +font(14, 24)
+  font-family: $serif
+  margin-top: 50px
+  padding: 0px $mobile_padding_large 90px
+  background: $white
+
+  p
+    padding: 0 0 40px
+
+.cover_image
+  +block(100%, 240px)
+  background: url("../images/background-image.jpg") center center
+  background-size: cover
+  -webkit-transition: transform 0.5s
+  -webkit-transform: translateX(0px)
 
 .title
+  +font(44, 48)
+  font-family: $brand
+  padding: 50px $mobile_padding_large 0
 
 // Masks
 // --------------------
@@ -66,14 +90,54 @@ a, button
 // Large Screen Styling
 // *************************
 +mq(m)
-  .main_menu__blocker--small
-    display: none
 
-  .main_menu__blocker--large
-    display: block
+  body
+    padding-top: $desktop_header_height
 
   .content_wrapper
 
     &.open .page_content
       -webkit-transition: none
       -webkit-transform: translateX(0px)
+
+    &.open .cover_image
+      -webkit-transition: none
+      -webkit-transform: translateX(0px)
+
+  .cover_image
+    height: 640px
+    position: fixed
+    top: $desktop_header_height
+    left: 0px
+    z-index: 0
+
+  .page_content__header
+    +block(100%, 640px)
+    position: relative
+
+  .title
+    display: block
+    position: absolute
+    top: 50%
+    left: 50%
+    padding: 0px
+    +font(120, 132)
+    color: $white
+    -webkit-transform: translate(-50%, -50%)
+
+  .page_content__content
+    background: $white
+    +font(24, 36)
+    position: relative
+    z-index: 1
+    margin-top: 0px
+    p
+      width: 968px
+      margin: 0px auto
+      padding: 60px 0 0
+
+  .main_menu__blocker--small
+    display: none
+
+  .main_menu__blocker--large
+    display: block

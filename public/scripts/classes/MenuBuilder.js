@@ -15,7 +15,6 @@ var MenuBuilder = (function() {
     this.api_str = api_str;
     this.$parent_node = document.querySelector(parent_node);
     this.retrieve_menu();
-
   }
 
   /**
