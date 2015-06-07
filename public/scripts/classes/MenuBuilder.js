@@ -27,9 +27,9 @@ var MenuBuilder = (function() {
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
-      if (xhr.readyState==4 && xhr.status==200) {
+      if (xhr.readyState===4 && xhr.status===200) {
        _menu_data = JSON.parse(xhr.responseText);
-       this.build_menu();
+       this.build_menu(_menu_data);
       }
     }.bind(this);
 
@@ -43,20 +43,59 @@ var MenuBuilder = (function() {
   * @method build_menu
   * @memberof MenuBuilder
   */
-  MenuBuilder.prototype.build_menu = function() {
-    _menu_data.items.forEach(function(){
-      console.log(this);
-    });
+  MenuBuilder.prototype.build_menu = function(menu_data) {
+    var menu = document.createElement("DIV");
+    menu_data.items.forEach(function(item){
+      item = this.prep_menu_section(item);
+      menu.appendChild(item);
+    }.bind(this));
+    this.$parent_node.appendChild(menu);
   };
 
   /**
   * Builds out a node list for a specific menu item and its subs
-  * @method prep_menu_item
+  * @method prep_menu_section
   * @memberof MenuBuilder
   * @return {object} - node for menu item
   */
-  MenuBuilder.prototype.prep_menu_item = function() {
-    return "";
+  MenuBuilder.prototype.prep_menu_section = function(item) {
+    var menuSection;
+    if(item.items.length !== 0){
+      var first_link = this.create_menu_item(item, "main_menu__link");
+
+      menuSection = document.createElement("nav");
+      menuSection.setAttribute("role", "menu");
+      menuSection.setAttribute("aria-haspopup", "true");
+      menuSection.setAttribute("class", "main_menu__sub_menu");
+
+      menuSection.appendChild(first_link);
+
+      item.items.forEach(function(sub_item){
+        sub_item = this.create_menu_item(sub_item, "main_menu__link main_menu__link--sub");
+        menuSection.appendChild(sub_item);
+      }.bind(this));
+
+    }else{
+      menuSection = this.create_menu_item(item, "main_menu__link");
+    }
+    return menuSection;
+  };
+
+  /**
+  * Builds out a single node for a link in the menu
+  * @method create_menu_item
+  * @memberof MenuBuilder
+  * @param {object} item - json object to turn into link
+  * @param {string} classes - css classlist to append
+  * @return {object} - node for menu item
+  */
+  MenuBuilder.prototype.create_menu_item = function(item, classes) {
+    var link = document.createElement("a");
+    link.setAttribute("role", "menuitem");
+    link.setAttribute("href", item.url);
+    link.setAttribute("class", classes);
+    link.innerHTML = item.label;
+    return link;
   };
 
   return MenuBuilder;
