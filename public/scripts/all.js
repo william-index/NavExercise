@@ -40,9 +40,11 @@ var MainNavigation = (function() {
 
     if(_classList.contains("open")){
       this.close_all_subs();
+      $qs('.main_menu__blocker--large').classList.remove('open');
     }else{
       this.close_all_subs();
       _classList.add("open");
+      $qs('.main_menu__blocker--large').classList.add('open');
     }
 
   };
@@ -55,6 +57,7 @@ var MainNavigation = (function() {
   */
   MainNavigation.prototype.close_all_subs = function(menu_link) {
     _$subs = this.menu.querySelectorAll(".main_menu__sub_menu");
+    $qs('.main_menu__blocker--large').classList.remove('open');
     for (var i = 0; i < _$subs.length; i++){
       _$subs[i].classList.remove("open");
     }
@@ -126,7 +129,7 @@ var MenuBuilder = (function() {
   MenuBuilder.prototype.prep_menu_section = function(item) {
     var menuSection;
     if(item.items.length !== 0){
-      var first_link = this.create_menu_item(item, "main_menu__link");
+      var first_link = this.create_menu_item(item, "main_menu__link main_menu__link--main");
 
       menuSection = document.createElement("nav");
       menuSection.setAttribute("role", "menu");
@@ -135,13 +138,17 @@ var MenuBuilder = (function() {
 
       menuSection.appendChild(first_link);
 
+      var sub_sect = document.createElement("div");
+
       item.items.forEach(function(sub_item){
         sub_item = this.create_menu_item(sub_item, "main_menu__link main_menu__link--sub");
-        menuSection.appendChild(sub_item);
+        sub_sect.appendChild(sub_item);
       }.bind(this));
 
+      menuSection.appendChild(sub_sect);
+
     }else{
-      menuSection = this.create_menu_item(item, "main_menu__link");
+      menuSection = this.create_menu_item(item, "main_menu__link main_menu__link--main");
     }
     return menuSection;
   };
@@ -182,8 +189,11 @@ $qs('.main_header__burger').addEventListener('click', function(e){
   mainMenu.toggle_open();
 });
 $qs('.main_menu__blocker--small').addEventListener('click', function(e){
-  e.preventDefault();
   mainMenu.toggle_open();
+  mainMenu.close_all_subs();
+});
+$qs('.main_menu__blocker--large').addEventListener('click', function(e){
+  mainMenu.close_all_subs();
 });
 
 // Event Delgation click listener for sub menus

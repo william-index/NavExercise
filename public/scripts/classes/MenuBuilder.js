@@ -61,7 +61,7 @@ var MenuBuilder = (function() {
   MenuBuilder.prototype.prep_menu_section = function(item) {
     var menuSection;
     if(item.items.length !== 0){
-      var first_link = this.create_menu_item(item, "main_menu__link");
+      var first_link = this.create_menu_item(item, "main_menu__link main_menu__link--main");
 
       menuSection = document.createElement("nav");
       menuSection.setAttribute("role", "menu");
@@ -70,13 +70,17 @@ var MenuBuilder = (function() {
 
       menuSection.appendChild(first_link);
 
+      var sub_sect = document.createElement("div");
+
       item.items.forEach(function(sub_item){
         sub_item = this.create_menu_item(sub_item, "main_menu__link main_menu__link--sub");
-        menuSection.appendChild(sub_item);
+        sub_sect.appendChild(sub_item);
       }.bind(this));
 
+      menuSection.appendChild(sub_sect);
+
     }else{
-      menuSection = this.create_menu_item(item, "main_menu__link");
+      menuSection = this.create_menu_item(item, "main_menu__link main_menu__link--main");
     }
     return menuSection;
   };

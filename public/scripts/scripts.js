@@ -14,8 +14,11 @@ $qs('.main_header__burger').addEventListener('click', function(e){
   mainMenu.toggle_open();
 });
 $qs('.main_menu__blocker--small').addEventListener('click', function(e){
-  e.preventDefault();
   mainMenu.toggle_open();
+  mainMenu.close_all_subs();
+});
+$qs('.main_menu__blocker--large').addEventListener('click', function(e){
+  mainMenu.close_all_subs();
 });
 
 // Event Delgation click listener for sub menus

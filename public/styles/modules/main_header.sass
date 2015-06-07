@@ -1,14 +1,7 @@
-// local vars
-// --------------------------------------
-$mobile_padding_h: 24px
-$mobile_padding_v: 20px
-$mobile_header_height: $mobile_padding_v * 3
-$mobile_item_height: 48px
-
 // General Header Styling
 // ---------------------------------------
 .main_header
-  +block(100%, $mobile_padding_v * 3)
+  +block(100%, $mobile_padding_small * 3)
   background: $huge_magenta
   position: fixed
   top: 0px
@@ -16,17 +9,17 @@ $mobile_item_height: 48px
   z-index: 999
 
 .main_header__logo
-  +block(50px, $mobile_padding_v)
+  +block(50px, $mobile_padding_small)
   float: left
-  padding: $mobile_padding_v $mobile_padding_h
+  padding: $mobile_padding_small $mobile_padding_large
   overflow: hidden
-  -webkit-transform: translateX(#{-50px - $mobile_padding_h*2})
+  -webkit-transform: translateX(#{-50px - $mobile_padding_large*2})
   -webkit-transition: transform 0.5s
 
   a
-    +block(50px, $mobile_padding_v)
+    +block(50px, $mobile_padding_small)
     background: url("../images/HUGE.png")
-    background-position: 0px $mobile_padding_v*-2
+    background-position: 0px $mobile_padding_small*-2
     background-size: cover
     text-indent: -9999px
 
@@ -36,3 +29,15 @@ $mobile_item_height: 48px
     -webkit-transform: translateX(calc(100vw - #{$mobile_header_height}))
   .main_header__logo
     -webkit-transform: translateX(0px)
+
+// *************************
+// Large Screen Styling
+// *************************
++mq(m)
+  .main_header
+    +block(100%, $mobile_padding_large * 3)
+  .main_header__logo
+    +block(60px, $mobile_padding_large)
+    padding: $mobile_padding_large $mobile_padding_large
+    -webkit-transform: translateX(0px)
+    margin-right: $mobile_padding_large

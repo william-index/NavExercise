@@ -7,9 +7,9 @@
   left: 0px
   -webkit-transition: background 0.2s, transform 0.5s
   div
-    +block($mobile_padding_h, 4px)
+    +block($mobile_padding_large, 4px)
     background: $white
-    margin: $mobile_padding_v auto 4px auto
+    margin: $mobile_padding_small auto 4px auto
     -webkit-transition: transform 0.4s, width 0.4s, background 0.2s
     &+div
       margin-top: 0px
@@ -30,3 +30,11 @@
       -webkit-transform: translateY(-11px) rotate(-45deg)
       transform: translateY(-8px) rotate(-45deg)
       width: 30px
+
+
+// *************************
+// Large Screen Styling
+// *************************
++mq(m)
+  .main_header__burger
+    display: none

@@ -60,3 +60,20 @@ a, button
 
 .main_menu__blocker--large
   display: none
+
+
+// *************************
+// Large Screen Styling
+// *************************
++mq(m)
+  .main_menu__blocker--small
+    display: none
+
+  .main_menu__blocker--large
+    display: block
+
+  .content_wrapper
+
+    &.open .page_content
+      -webkit-transition: none
+      -webkit-transform: translateX(0px)

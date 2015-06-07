@@ -1,5 +1,5 @@
 // Media Queries by sizes
-$breaks: (m: 480px)
+$breaks: (m: 970px)
 =mq($size)
   @media (min-width: #{map-get($breaks, $size)})
     @content
@@ -14,7 +14,7 @@ $breaks: (m: 480px)
   display: inline-block
   width: $w
   height: $h
-  
+
 
 // Allows setting font as a 'fraction'
 =font($size, $leading)

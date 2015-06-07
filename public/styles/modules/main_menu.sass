@@ -22,8 +22,8 @@
     content: ""
     +block(20px, 12px)
     position: absolute
-    top: $mobile_padding_v - 3
-    right: $mobile_padding_v - 3
+    top: $mobile_padding_small - 3
+    right: $mobile_padding_small - 3
     background: url("images/arrow.svg")
     background-size: 20px auto
     -webkit-transition: transform 0.3s
@@ -41,7 +41,7 @@
   +block(100%, $mobile_item_height)
   box-sizing: border-box
   +font(21, 52)
-  padding: 0px $mobile_padding_h
+  padding: 0px $mobile_padding_large
   font-family: $brand
   color: black
 
@@ -56,3 +56,67 @@
 // open state
 .open .main_menu
   -webkit-transform: translateX(0px)
+
+
+// *************************
+// Large Screen Styling
+// *************************
++mq(m)
+  .main_menu
+    +block(auto, $desktop_header_height)
+    padding: 0px
+    position: static
+    overflow: visible
+    background: none
+    -webkit-transform: translateX(0px)
+
+  .main_menu__link--main
+    +block(auto, $desktop_header_height)
+    line-height: $desktop_header_height
+    float: left
+    position: relative
+    box-sizing: border-box
+    color: $white
+
+    &:hover
+      background: $white
+
+  .main_menu__sub_menu.open .main_menu__link--main
+    background: $white
+    color: $huge_magenta
+
+  .main_menu__sub_menu
+    .main_menu__link:first-child:before
+      background: none
+
+  .main_menu__sub_menu
+    +block(auto, $desktop_header_height)
+    float: left
+    overflow: visible
+  .main_menu__sub_menu.open
+    overflow: visible
+
+  .main_menu__sub_menu div
+    +block(auto, auto)
+    position: absolute
+    top: $desktop_header_height
+    left: 0px
+    background: $white
+    overflow: hidden
+    max-height: 0px
+    -webkit-transition: max-height 0.3s linear
+
+  .main_menu__link--sub
+    clear: both
+    width: auto
+    min-width: 100%
+    padding-right: $mobile_padding_large
+    float: left
+    white-space: nowrap
+
+  .main_menu__link--sub:first-child
+    margin-top: 12px
+
+  .main_menu__sub_menu.open div
+    max-height: calc(100vh - #{$desktop_header_height})
+    overflow-y: scroll
