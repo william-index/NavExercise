@@ -1,0 +1,58 @@
+// Navigation Styling
+// ---------------------------------------
+.main_menu
+  +block(228px, calc(100vh - #{$mobile_header_height}))
+  box-sizing: border-box
+  padding-top: 12px
+  position: fixed
+  top: $mobile_header_height
+  left: 0px
+  overflow-y: scroll
+  background: $white
+  -webkit-transition: transform 0.5s
+  -webkit-transform: translateX(-228px)
+
+.main_menu__sub_menu
+  max-height: $mobile_item_height
+  overflow: hidden
+  position: relative
+  -webkit-transition: max-height 0.3s
+
+  .main_menu__link:first-child:before
+    content: ""
+    +block(20px, 12px)
+    position: absolute
+    top: $mobile_padding_v - 3
+    right: $mobile_padding_v - 3
+    background: url("images/arrow.svg")
+    background-size: 20px auto
+    -webkit-transition: transform 0.3s
+    -webkit-transform: rotate(0deg)
+
+.main_menu__sub_menu.open
+  max-height: 100vh
+  overflow-y: scroll
+
+  .main_menu__link:first-child:before
+    -webkit-transform: rotate(-180deg)
+
+// line height adjusted for optical alignment
+.main_menu__link
+  +block(100%, $mobile_item_height)
+  box-sizing: border-box
+  +font(21, 52)
+  padding: 0px $mobile_padding_h
+  font-family: $brand
+  color: black
+
+  &:hover
+    color: $huge_magenta
+    background: $light_grey
+
+.main_menu__link--sub
+  +font(16, 48)
+  font-family: $serif
+
+// open state
+.open .main_menu
+  -webkit-transform: translateX(0px)

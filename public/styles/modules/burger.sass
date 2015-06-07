@@ -1,0 +1,32 @@
+// Hamburger icon used for opening menu
+// ---------------------------------------
+.main_header__burger
+  +block(($mobile_header_height), 60px)
+  position: absolute
+  top: 0px
+  left: 0px
+  -webkit-transition: background 0.2s, transform 0.5s
+  div
+    +block($mobile_padding_h, 4px)
+    background: $white
+    margin: $mobile_padding_v auto 4px auto
+    -webkit-transition: transform 0.4s, width 0.4s, background 0.2s
+    &+div
+      margin-top: 0px
+  // hovers
+  &:hover
+    background: $white
+    div
+      background: $huge_magenta
+  // This class transforms the burger into a close button
+  &.open
+    div:nth-child(1)
+      -webkit-transform: translateY(11px) rotate(45deg)
+      transform: translateY(8px) rotate(45deg)
+      width: 30px
+    div:nth-child(2)
+      width: 0px
+    div:nth-child(3)
+      -webkit-transform: translateY(-11px) rotate(-45deg)
+      transform: translateY(-8px) rotate(-45deg)
+      width: 30px

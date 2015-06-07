@@ -1,22 +1,62 @@
+@import "includes/fonts"
 @import "includes/variables"
 @import "includes/mixins"
-@import "includes/fonts"
 @import "includes/normalize"
 
 // modules
+@import "modules/main_header"
 @import "modules/main_menu"
+@import "modules/burger"
 
-body
-  background: #ec008c
-  color: #fff
 
-h1
-  position: absolute
-  top: 50%
-  left: 50%
-  -webkit-transform: translate(-50%, -50%)
-  transform: translate(-50%, -50%)
-  margin: 0
-  font: 20vmin/1 HUGEAvantGardeBold
-  letter-spacing: -0.06em
-  text-align: center
+// Custom Resets
+// -------------------
+a, button
+  outline: 0px !important
+
+*
+  -webkit-font-smoothing: antialiased
+
+
+// Content Well
+// -------------------
+.content_wrapper
+  width: 100%
+  overflow-x: hidden
+
+  &.open .page_content
+    -webkit-transform: translateX(228px)
+
+.page_content
+  -webkit-transition: transform 0.5s
+  -webkit-transform: translateX(0px)
+
+.page_content__header
+
+.page_content__content
+
+.title
+
+// Masks
+// --------------------
+.main_menu__blocker
+  +block(100vw, 100vh)
+  position: fixed
+  top: 0px
+  left: 0px
+  z-index: 998
+  background: $trans_black
+  cursor: pointer
+  -webkit-transition: opacity 0.5s
+  -webkit-transform: translateX(100vw)
+  opacity: 0
+
+  &.open
+    -webkit-transform: translateX(0vw)
+    opacity: 1
+
+.main_menu__blocker--small
+  display: block
+
+.main_menu__blocker--large
+  display: none

@@ -15,7 +15,9 @@ module.exports = function(grunt){
 
     concat: {
       options: {
-        separator: ''
+        banner: '(function() {',
+        separator: '',
+        footer: '})();'
       },
       dist: {
         src: ['public/scripts/classes/*.js', 'public/scripts/scripts.js'],
@@ -50,7 +52,7 @@ module.exports = function(grunt){
       },
       js: {
         files: ['public/scripts/classes/*.js', 'public/scripts/scripts.js'],
-        tasks: ['buildScripts','uglify']
+        tasks: ['buildScripts']
       }
     },
 

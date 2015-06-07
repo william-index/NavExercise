@@ -1,0 +1,22 @@
+// Media Queries by sizes
+$breaks: (m: 480px)
+=mq($size)
+  @media (min-width: #{map-get($breaks, $size)})
+    @content
+
+// I use this A LOT
+=block($w,$h)
+  display: block
+  width: $w
+  height: $h
+
+=inline-block($w,$h)
+  display: inline-block
+  width: $w
+  height: $h
+  
+
+// Allows setting font as a 'fraction'
+=font($size, $leading)
+  font-size: $size+px
+  line-height: $leading+px

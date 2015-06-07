@@ -1,0 +1,38 @@
+// local vars
+// --------------------------------------
+$mobile_padding_h: 24px
+$mobile_padding_v: 20px
+$mobile_header_height: $mobile_padding_v * 3
+$mobile_item_height: 48px
+
+// General Header Styling
+// ---------------------------------------
+.main_header
+  +block(100%, $mobile_padding_v * 3)
+  background: $huge_magenta
+  position: fixed
+  top: 0px
+  left: 0px
+  z-index: 999
+
+.main_header__logo
+  +block(50px, $mobile_padding_v)
+  float: left
+  padding: $mobile_padding_v $mobile_padding_h
+  overflow: hidden
+  -webkit-transform: translateX(#{-50px - $mobile_padding_h*2})
+  -webkit-transition: transform 0.5s
+
+  a
+    +block(50px, $mobile_padding_v)
+    background: url("../images/HUGE.png")
+    background-position: 0px $mobile_padding_v*-2
+    background-size: cover
+    text-indent: -9999px
+
+// open states for general header styling
+.open
+  .main_header__burger
+    -webkit-transform: translateX(calc(100vw - #{$mobile_header_height}))
+  .main_header__logo
+    -webkit-transform: translateX(0px)

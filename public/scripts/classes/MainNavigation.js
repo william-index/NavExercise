@@ -10,8 +10,7 @@ var MainNavigation = (function() {
   * @param {string} sel_string - css selector string of nav container
   */
   function MainNavigation(sel_string) {
-    this.menu = document.querySelector(sel_string);
-    console.log(sel_string);
+    this.menu = $qs(sel_string);
   }
 
   /**
@@ -21,17 +20,30 @@ var MainNavigation = (function() {
   * @public
   */
   MainNavigation.prototype.toggle_open = function() {
-
+    var _parent = this.menu.parentNode;
+    _parent.classList.toggle('open');
+    _parent.querySelector('.burger_menu')
+      .classList.toggle('open');
+    $qs('.content_wrapper').classList.toggle('open');
+    $qs('.main_menu__blocker--small').classList.toggle('open');
   };
 
   /**
-  * Opens Sub Menu
+  * Toggles sub menu and closes any other open menus
   * @method open_sub
   * @memberof MainNavigation
-  * @param {object} menu_link - link in menu that activates sub
+  * @param {object} $subMenu - subMenu item
   * @public
   */
-  MainNavigation.prototype.open_sub = function(menu_link) {
+  MainNavigation.prototype.toggle_sub = function($subMenu) {
+    _classList = $subMenu.classList;
+
+    if(_classList.contains("open")){
+      this.close_all_subs();
+    }else{
+      this.close_all_subs();
+      _classList.add("open");
+    }
 
   };
 
@@ -42,7 +54,10 @@ var MainNavigation = (function() {
   * @public
   */
   MainNavigation.prototype.close_all_subs = function(menu_link) {
-
+    _$subs = this.menu.querySelectorAll(".main_menu__sub_menu");
+    for (var i = 0; i < _$subs.length; i++){
+      _$subs[i].classList.remove("open");
+    }
   };
 
   return MainNavigation;
