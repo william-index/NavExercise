@@ -38,12 +38,12 @@ var MainNavigation = (function() {
   MainNavigation.prototype.toggle_sub = function($subMenu) {
     _classList = $subMenu.classList;
 
-    if(_classList.contains("open")){
+    if(_classList.contains('open')){
       this.close_all_subs();
       $qs('.main_menu__blocker--large').classList.remove('open');
     }else{
       this.close_all_subs();
-      _classList.add("open");
+      _classList.add('open');
       $qs('.main_menu__blocker--large').classList.add('open');
     }
 
@@ -56,10 +56,10 @@ var MainNavigation = (function() {
   * @public
   */
   MainNavigation.prototype.close_all_subs = function(menu_link) {
-    _$subs = this.menu.querySelectorAll(".main_menu__sub_menu");
+    _$subs = this.menu.querySelectorAll('.main_menu__sub_menu');
     $qs('.main_menu__blocker--large').classList.remove('open');
     for (var i = 0; i < _$subs.length; i++){
-      _$subs[i].classList.remove("open");
+      _$subs[i].classList.remove('open');
     }
   };
 
@@ -100,7 +100,7 @@ var MenuBuilder = (function() {
       }
     }.bind(this);
 
-    xhr.open("GET", this.api_str, true);
+    xhr.open('GET', this.api_str, true);
     xhr.send();
   };
 
@@ -111,7 +111,7 @@ var MenuBuilder = (function() {
   * @memberof MenuBuilder
   */
   MenuBuilder.prototype.build_menu = function(menu_data) {
-    var menu = document.createElement("DIV");
+    var menu = document.createElement('DIV');
     menu_data.items.forEach(function(item){
       item = this.prep_menu_section(item);
       menu.appendChild(item);
@@ -128,26 +128,26 @@ var MenuBuilder = (function() {
   MenuBuilder.prototype.prep_menu_section = function(item) {
     var menuSection;
     if(item.items.length !== 0){
-      var first_link = this.create_menu_item(item, "main_menu__link main_menu__link--main");
+      var first_link = this.create_menu_item(item, 'main_menu__link main_menu__link--main');
 
-      menuSection = document.createElement("nav");
-      menuSection.setAttribute("role", "menu");
-      menuSection.setAttribute("aria-haspopup", "true");
-      menuSection.setAttribute("class", "main_menu__sub_menu");
+      menuSection = document.createElement('nav');
+      menuSection.setAttribute('role', 'menu');
+      menuSection.setAttribute('aria-haspopup', 'true');
+      menuSection.setAttribute('class', 'main_menu__sub_menu');
 
       menuSection.appendChild(first_link);
 
-      var sub_sect = document.createElement("div");
+      var sub_sect = document.createElement('div');
 
       item.items.forEach(function(sub_item){
-        sub_item = this.create_menu_item(sub_item, "main_menu__link main_menu__link--sub");
+        sub_item = this.create_menu_item(sub_item, 'main_menu__link main_menu__link--sub');
         sub_sect.appendChild(sub_item);
       }.bind(this));
 
       menuSection.appendChild(sub_sect);
 
     }else{
-      menuSection = this.create_menu_item(item, "main_menu__link main_menu__link--main");
+      menuSection = this.create_menu_item(item, 'main_menu__link main_menu__link--main');
     }
     return menuSection;
   };
@@ -161,10 +161,10 @@ var MenuBuilder = (function() {
   * @return {object} - node for menu item
   */
   MenuBuilder.prototype.create_menu_item = function(item, classes) {
-    var link = document.createElement("a");
-    link.setAttribute("role", "menuitem");
-    link.setAttribute("href", item.url);
-    link.setAttribute("class", classes);
+    var link = document.createElement('a');
+    link.setAttribute('role', 'menuitem');
+    link.setAttribute('href', item.url);
+    link.setAttribute('class', classes);
     link.innerHTML = item.label;
     return link;
   };
@@ -176,8 +176,8 @@ var MenuBuilder = (function() {
 
 // Object Initializations
 // ----------------------------------
-var mainMenu = new MainNavigation(".main_menu");
-var buildMenu = new MenuBuilder("/api/nav.json", ".main_menu");
+var mainMenu = new MainNavigation('.main_menu');
+var buildMenu = new MenuBuilder('/api/nav.json', '.main_menu');
 
 // Event Listners
 // ----------------------------------
@@ -198,8 +198,8 @@ $qs('.main_menu__blocker--large').addEventListener('click', function(e){
 // Event Delgation click listener for sub menus
 $qs('.main_menu').addEventListener('click', function(e){
   _parent = e.target.parentNode;
-  _has_subs = _parent.classList.contains("main_menu__sub_menu");
-  _is_sub = e.target.classList.contains("main_menu__link--sub")
+  _has_subs = _parent.classList.contains('main_menu__sub_menu');
+  _is_sub = e.target.classList.contains('main_menu__link--sub')
 
   if(_has_subs && !_is_sub){
     e.preventDefault();

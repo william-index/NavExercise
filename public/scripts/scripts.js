@@ -2,8 +2,8 @@
 
 // Object Initializations
 // ----------------------------------
-var mainMenu = new MainNavigation(".main_menu");
-var buildMenu = new MenuBuilder("/api/nav.json", ".main_menu");
+var mainMenu = new MainNavigation('.main_menu');
+var buildMenu = new MenuBuilder('/api/nav.json', '.main_menu');
 
 // Event Listners
 // ----------------------------------
@@ -24,8 +24,8 @@ $qs('.main_menu__blocker--large').addEventListener('click', function(e){
 // Event Delgation click listener for sub menus
 $qs('.main_menu').addEventListener('click', function(e){
   _parent = e.target.parentNode;
-  _has_subs = _parent.classList.contains("main_menu__sub_menu");
-  _is_sub = e.target.classList.contains("main_menu__link--sub")
+  _has_subs = _parent.classList.contains('main_menu__sub_menu');
+  _is_sub = e.target.classList.contains('main_menu__link--sub')
 
   if(_has_subs && !_is_sub){
     e.preventDefault();

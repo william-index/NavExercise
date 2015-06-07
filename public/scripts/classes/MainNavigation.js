@@ -38,12 +38,12 @@ var MainNavigation = (function() {
   MainNavigation.prototype.toggle_sub = function($subMenu) {
     _classList = $subMenu.classList;
 
-    if(_classList.contains("open")){
+    if(_classList.contains('open')){
       this.close_all_subs();
       $qs('.main_menu__blocker--large').classList.remove('open');
     }else{
       this.close_all_subs();
-      _classList.add("open");
+      _classList.add('open');
       $qs('.main_menu__blocker--large').classList.add('open');
     }
 
@@ -56,10 +56,10 @@ var MainNavigation = (function() {
   * @public
   */
   MainNavigation.prototype.close_all_subs = function(menu_link) {
-    _$subs = this.menu.querySelectorAll(".main_menu__sub_menu");
+    _$subs = this.menu.querySelectorAll('.main_menu__sub_menu');
     $qs('.main_menu__blocker--large').classList.remove('open');
     for (var i = 0; i < _$subs.length; i++){
-      _$subs[i].classList.remove("open");
+      _$subs[i].classList.remove('open');
     }
   };
 
